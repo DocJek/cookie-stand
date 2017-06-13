@@ -30,6 +30,9 @@ var seaTacAirport = new CookieStore('SeaTac Airport', 3, 24, 1.2, []);
 seaTacAirport.getCookiesPerHour();
 render(seaTacAirport);
 
+var seattleCenter = new CookieStore('Seattle Center', 11, 38, 3.7, []);
+seattleCenter.getCookiesPerHour();
+render(seattleCenter);
 
 function render(storename) {
   var parentEl = document.getElementById('firstPike');
