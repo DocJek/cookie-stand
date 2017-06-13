@@ -34,6 +34,10 @@ var seattleCenter = new CookieStore('Seattle Center', 11, 38, 3.7, []);
 seattleCenter.getCookiesPerHour();
 render(seattleCenter);
 
+var capitolHill = new CookieStore('Capitol Hill', 20, 38, 2.3, []);
+capitolHill.getCookiesPerHour();
+render(capitolHill);
+
 function render(storename) {
   var parentEl = document.getElementById('firstPike');
 
