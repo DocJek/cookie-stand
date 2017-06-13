@@ -13,7 +13,7 @@ function CookieStore (name, minCust, maxCust, avgCookieSales, cookiesPerHour) {
   this.avgCookieSales = avgCookieSales;
   this.cookiesPerHour = cookiesPerHour;
   this.getCookiesPerHour = function() {
-    for (var i = 0; i < 16; i++) {
+    for (var i = 0; i < 15; i++) {
       var cookie = Math.floor(randNum(this.minCust, this.maxCust) * this.avgCookieSales);
       this.cookiesPerHour.push(cookie);
       console.log(cookie);
@@ -25,18 +25,22 @@ function CookieStore (name, minCust, maxCust, avgCookieSales, cookiesPerHour) {
 var firstAndPike = new CookieStore('First and Pike', 23, 65, 6.3, []);
 firstAndPike.getCookiesPerHour();
 render(firstAndPike);
-
+total = 0;
 var seaTacAirport = new CookieStore('SeaTac Airport', 3, 24, 1.2, []);
 seaTacAirport.getCookiesPerHour();
 render(seaTacAirport);
-
+total = 0;
 var seattleCenter = new CookieStore('Seattle Center', 11, 38, 3.7, []);
 seattleCenter.getCookiesPerHour();
 render(seattleCenter);
-
+total = 0;
 var capitolHill = new CookieStore('Capitol Hill', 20, 38, 2.3, []);
 capitolHill.getCookiesPerHour();
 render(capitolHill);
+total = 0;
+var alki = new CookieStore('Alki', 2, 16, 4.6, []);
+alki.getCookiesPerHour();
+render(alki);
 
 function render(storename) {
   var parentEl = document.getElementById('firstPike');
