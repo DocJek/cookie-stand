@@ -11,14 +11,15 @@ var firstAndPike = {
   maxCust: 65,
   avgCookieSales: 6.3,
   custAndCookiesPerHour: [],
-  getCustPerHour: function() {
-    return randNum(this.minCust, this.maxCust);
+  getCustPerHour:  function() {
+    this.custPerHour = randNum(this.minCust, this.maxCust);
   },
   getCookiesPerHour: function() {
-    return Math.floor(this.getCustPerHour() * this.avgCookieSales);
+    firstAndPike.getCustPerHour();
+    this.cookiesPerHour = Math.floor(this.custPerHour * this.avgCookieSales);
     for (var i = 0; i < 16; i++) {
-      var cookie = firstPike.getCookiesPerHour();
-      custAndCookiesPerHour.push(cookie)[i];
+      var cookie = firstAndPike.getCookiesPerHour();
+      custAndCookiesPerHour.push(cookie[i]);
       total += custAndCookiesPerHour[i];
     }
   }
