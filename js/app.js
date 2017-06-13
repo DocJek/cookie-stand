@@ -56,6 +56,7 @@ li = document.createElement('li');
 li.textContent = 'Total: ' + total + ' cookies';
 ul.appendChild(li);
 
+total = 0;
 
 var seaTacAirport = {
   name: 'SeaTac Airport',
@@ -63,53 +64,50 @@ var seaTacAirport = {
   maxCust: 24,
   avgCookieSales: 1.2,
   custAndCookiesPerHour: [],
-  getCustPerHour: function() {
-    return randNum(this.minCust, this.maxCust);
-  },
   getCookiesPerHour: function() {
-    return Math.floor(this.getCustPerHour() * this.avgCookieSales);
     for (var i = 0; i < 16; i++) {
-      var cookie = this.getCookiesPerHour();
-      custAndCookiesPerHour.push(cookie)[i];
-      total += this.custAndCookiesPerHour[i];
+      var cookie = Math.floor(randNum(this.minCust, this.maxCust) * this.avgCookieSales);
+      this.custAndCookiesPerHour.push(cookie);
+      console.log(cookie);
+      total += cookie;
     }
   }
 };
 
-buildArray2();
+seaTacAirport.getCookiesPerHour();
+// buildArray1();
 
+// function buildArray1() {
 
-function buildArray2() {
+parentEl = document.getElementById('seaTac');
 
-  var parentEl = document.getElementById('seaTac');
+article = document.createElement('article');
+parentEl.appendChild(article);
 
-  var article = document.createElement('article');
-  parentEl.appendChild(article);
+h2 = document.createElement('h2');
+article.appendChild(h2);
+h2.textContent = seaTacAirport.name;
 
-  var h2 = document.createElement('h2');
-  article.appendChild(h2);
-  h2.textContent = seaTacAirport.name;
+ul = document.createElement('ul');
+article.appendChild(ul);
 
-  var ul = document.createElement('ul');
-  article.appendChild(ul);
-
-  for (var x = 0; x < seaTacAirport.custAndCookiesPerHour.length; x++) {
-    var li = document.createElement('li');
-    li.textContent = custAndCookiesPerHour[x];
-    ul.appendChild(li);
-    if (x < 6) {
-      li.textContent = x + 6 + 'am: ' + custAndCookiesPerHour[x] + ' cookies';
-    } else if (x > 6) {
-      li.textContent = x - 6 + 'pm: ' + custAndCookiesPerHour[x] + ' cookies';
-    } else {
-      li.textContent = x + 6 + 'pm: ' + custAndCookiesPerHour[x] + ' cookies';
-    }
-  }
-
+for (x = 0; x < seaTacAirport.custAndCookiesPerHour.length; x++) {
   li = document.createElement('li');
-  li.textContent = 'Total: ' + total + ' cookies';
+  li.textContent = seaTacAirport.custAndCookiesPerHour[x];
   ul.appendChild(li);
+  if (x < 6) {
+    li.textContent = x + 6 + 'am: ' + seaTacAirport.custAndCookiesPerHour[x] + ' cookies';
+  } else if (x > 6) {
+    li.textContent = x - 6 + 'pm: ' + seaTacAirport.custAndCookiesPerHour[x] + ' cookies';
+  } else {
+    li.textContent = x + 6 + 'pm: ' + seaTacAirport.custAndCookiesPerHour[x] + ' cookies';
+  }
 }
+
+li = document.createElement('li');
+li.textContent = 'Total: ' + total + ' cookies';
+ul.appendChild(li);
+
 
 var seattleCenter = {
   name: 'Seattle Center',
