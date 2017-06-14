@@ -60,12 +60,15 @@ function tableHeader () {
 }
 
 function tableFooter() {
-  var tr = document.createElement('tr');
-  table.appendChild(tr);
+  var tfoot = document.createElement('tfoot');
+  tfoot.id = 'hourlyTotals';
+  table.appendChild(tfoot);
   var td1 = document.createElement('td');
+  var tr = document.createElement('tr');
+  tfoot.appendChild(tr);
   tr.appendChild(td1);
   td1.textContent = 'Hourly Totals';
-  for (var x = 0; x < 15 + 1; x++) {
+  for (var x = 0; x < 14 + 1; x++) {
     var td = document.createElement('td');
     tr.appendChild(td);
   }
