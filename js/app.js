@@ -106,3 +106,5 @@ tableFooter();
 var storeTotal = document.createElement('th');
 tr1.appendChild(storeTotal);
 storeTotal.textContent = 'Daily Store Totals';
+
+
