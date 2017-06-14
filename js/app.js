@@ -14,8 +14,7 @@ function CookieStore (name, minCust, maxCust, avgCookieSales, cookiesPerHour) {
     for (var i = 0; i < 14; i++) {
       var cookie = Math.floor(randNum(this.minCust, this.maxCust) * this.avgCookieSales);
       this.cookiesPerHour.push(cookie);
-      console.log(cookie);
-      var total;
+      var total = 0;
       total += cookie;
       console.log(total);
     }
@@ -33,6 +32,8 @@ var capitolHill = new CookieStore('Capitol Hill', 20, 38, 2.3, []);
 capitolHill.getCookiesPerHour();
 var alki = new CookieStore('Alki', 2, 16, 4.6, []);
 alki.getCookiesPerHour();
+var hourlyTotal = new CookieStore('Hourly Total', null, null, null, []);
+
 
 var parentEl = document.getElementById('salmonCookies');
 
@@ -46,20 +47,22 @@ var thempty = document.createElement('th');
 tr1.appendChild(thempty);
 
 
-for (var storeList = 0; storeList < storename.length; storeList++) {
-  console.log(storeList);
-  for (var x = 0; x < storename[storeList].cookiesPerHour.length; x++) {
-    var th = document.createElement('th');
-    tr1.appendChild(th);
-    if (x < 6) {
-      th.textContent = x + 6 + ':00am';
-    } else if (x > 6) {
-      th.textContent = x - 6 + ':00pm';
-    } else {
-      th.textContent = x + 6 + ':00pm';
-    }
+// for (var storeList = 0; storeList < storename.length; storeList++) {
+//   console.log(storeList);
+for (var x = 0; x < storename[0].cookiesPerHour.length; x++) {
+  var th = document.createElement('th');
+  tr1.appendChild(th);
+  if (x < 6) {
+    th.textContent = x + 6 + ':00am';
+  } else if (x > 6) {
+    th.textContent = x - 6 + ':00pm';
+  } else {
+    th.textContent = x + 6 + ':00pm';
   }
 }
+// for hourly totals, need each index of every cookiesPerHour array added to the corresponding index of each array
+
+
 var storeTotal = document.createElement('th');
 tr1.appendChild(storeTotal);
 storeTotal.textContent = 'Daily Store Totals';
@@ -70,8 +73,7 @@ function render(storename) {
   var td1 = document.createElement('td');
   tr.appendChild(td1);
   td1.textContent = storename.name;
-
-  for (var x = 0; x < storename.cookiesPerHour.length; x++) {
+  for (var x = 0; x < storename.cookiesPerHour.length + 1; x++) {
     var td = document.createElement('td');
     td.textContent = storename.cookiesPerHour[x];
     tr.appendChild(td);
@@ -79,6 +81,8 @@ function render(storename) {
       td.textContent = storename.cookiesPerHour[x];
     } else if (x > 6) {
       td.textContent = storename.cookiesPerHour[x];
+    } else if (x == 15) {
+      td.textContent = storename.total[x];
     } else {
       td.textContent = storename.cookiesPerHour[x];
     }
@@ -89,7 +93,13 @@ render(seaTacAirport);
 render(seattleCenter);
 render(capitolHill);
 render(alki);
+render(hourlyTotal);
 
+// var bottomRow = document.createElement('tr');
+// table.appendChild(tr);
+// var hourlyTotals = document.createElement('td');
+// bottomRow.appendChild(td);
+// hourlyTotals.textContent = 'Total per hour';
 
 
 
