@@ -62,7 +62,17 @@ function tableHeader () {
   }
 }
 // for hourly totals, need each index of every cookiesPerHour array added to the corresponding index of each array
-
+// function tableFooter() {
+//   for (var x = 0; x < storename[0].cookiesPerHour.length; x++) {
+//     var th = document.createElement('th');
+//     tr1.appendChild(th);
+//     if (x <= cookiesPerHour.length) {
+//       th.textContent = '';
+//     } else {
+//       th.textContent = '';
+//     }
+//   }
+// }
 
 
 function render(storename) {
@@ -91,6 +101,7 @@ render(seattleCenter);
 render(capitolHill);
 render(alki);
 render(hourlyTotal);
+// tableFooter();
 var storeTotal = document.createElement('th');
 tr1.appendChild(storeTotal);
 storeTotal.textContent = 'Daily Store Totals';
