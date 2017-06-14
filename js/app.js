@@ -11,14 +11,15 @@ function CookieStore (name, minCust, maxCust, avgCookieSales, cookiesPerHour) {
   this.avgCookieSales = avgCookieSales;
   this.cookiesPerHour = cookiesPerHour;
   this.getCookiesPerHour = function() {
+    var total = 0;
     for (var i = 0; i < 14; i++) {
       var cookie = Math.floor(randNum(this.minCust, this.maxCust) * this.avgCookieSales);
       this.cookiesPerHour.push(cookie);
       console.log(cookie);
-      var total = 0;
       total += cookie;
       console.log(total);
     }
+    this.cookiesPerHour.push(total);
   };
   storename.push(this);
 }
@@ -46,7 +47,7 @@ alki.getCookiesPerHour();
 // for hourly totals, need each index of every cookiesPerHour array added to the corresponding index of each array
 
 function tableHeader () {
-  for (var x = 0; x < storename[0].cookiesPerHour.length; x++) {
+  for (var x = 0; x < storename[0].cookiesPerHour.length - 1; x++) {
     var th = document.createElement('th');
     tr1.appendChild(th);
     if (x < 6) {
@@ -80,7 +81,7 @@ function render(storename) {
   var td1 = document.createElement('td');
   tr.appendChild(td1);
   td1.textContent = storename.name;
-  for (var x = 0; x < storename.cookiesPerHour.length + 1; x++) {
+  for (var x = 0; x < storename.cookiesPerHour.length; x++) {
     var td = document.createElement('td');
     td.textContent = storename.cookiesPerHour[x];
     tr.appendChild(td);
