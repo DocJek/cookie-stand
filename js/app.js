@@ -14,6 +14,7 @@ function CookieStore (name, minCust, maxCust, avgCookieSales, cookiesPerHour) {
     for (var i = 0; i < 14; i++) {
       var cookie = Math.floor(randNum(this.minCust, this.maxCust) * this.avgCookieSales);
       this.cookiesPerHour.push(cookie);
+      console.log(cookie);
       var total = 0;
       total += cookie;
       console.log(total);
@@ -81,8 +82,6 @@ function render(storename) {
       td.textContent = storename.cookiesPerHour[x];
     } else if (x > 6) {
       td.textContent = storename.cookiesPerHour[x];
-    } else if (x == 15) {
-      td.textContent = storename.total[x];
     } else {
       td.textContent = storename.cookiesPerHour[x];
     }
