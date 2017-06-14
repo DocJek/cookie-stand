@@ -40,33 +40,30 @@ var parentEl = document.getElementById('salmonCookies');
 
 var table = document.createElement('table');
 parentEl.appendChild(table);
-
 var tr1 = document.createElement('tr');
 table.appendChild(tr1);
-
 var thempty = document.createElement('th');
 tr1.appendChild(thempty);
 
 
-// for (var storeList = 0; storeList < storename.length; storeList++) {
-//   console.log(storeList);
-for (var x = 0; x < storename[0].cookiesPerHour.length; x++) {
-  var th = document.createElement('th');
-  tr1.appendChild(th);
-  if (x < 6) {
-    th.textContent = x + 6 + ':00am';
-  } else if (x > 6) {
-    th.textContent = x - 6 + ':00pm';
-  } else {
-    th.textContent = x + 6 + ':00pm';
+
+
+function tableHeader () {
+  for (var x = 0; x < storename[0].cookiesPerHour.length; x++) {
+    var th = document.createElement('th');
+    tr1.appendChild(th);
+    if (x < 6) {
+      th.textContent = x + 6 + ':00am';
+    } else if (x > 6) {
+      th.textContent = x - 6 + ':00pm';
+    } else {
+      th.textContent = x + 6 + ':00pm';
+    }
   }
 }
 // for hourly totals, need each index of every cookiesPerHour array added to the corresponding index of each array
 
 
-var storeTotal = document.createElement('th');
-tr1.appendChild(storeTotal);
-storeTotal.textContent = 'Daily Store Totals';
 
 function render(storename) {
   var tr = document.createElement('tr');
@@ -87,12 +84,16 @@ function render(storename) {
     }
   }
 }
+tableHeader();
 render(firstAndPike);
 render(seaTacAirport);
 render(seattleCenter);
 render(capitolHill);
 render(alki);
 render(hourlyTotal);
+var storeTotal = document.createElement('th');
+tr1.appendChild(storeTotal);
+storeTotal.textContent = 'Daily Store Totals';
 
 // var bottomRow = document.createElement('tr');
 // table.appendChild(tr);
