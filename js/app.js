@@ -4,6 +4,16 @@ function randNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 var storename = [];
+storename.contains = function (name) {
+  for (var each in storename) {
+    var store = storename[each].name;
+    if (name.toLowerCase() === store.toLowerCase()) {
+      return true;
+    }
+  }
+  return false;
+};
+
 function CookieStore (name, minCust, maxCust, avgCookieSales, cookiesPerHour) {
   this.name = name;
   this.minCust = minCust;
@@ -32,7 +42,6 @@ var thempty = document.createElement('th');
 tr1.appendChild(thempty);
 table.appendChild(tr1);
 parentEl.appendChild(table);
-
 
 var firstAndPike = new CookieStore('First and Pike', 23, 65, 6.3, []);
 firstAndPike.getCookiesPerHour();
@@ -106,3 +115,36 @@ tableFooter();
 var storeTotal = document.createElement('th');
 tr1.appendChild(storeTotal);
 storeTotal.textContent = 'Daily Store Totals';
+
+var cookieInput = document.getElementById('cookieInput');
+cookieInput.addEventListener('submit',
+  function (event) {
+    event.preventDefault();
+    var name = event.target.name.value;
+    if (!isValidName(name)) {
+      return null;
+    };
+    var minCust = parseInt(event.target.minCust.value);
+    var maxCust = parseInt(event.target.maxCust.value);
+    var avgCookieSales = parseFloat(event.target.avgCookieSales.value);
+    var newStore = new CookieStore(name, minCust, maxCust, avgCookieSales, []);
+    if (minCust > maxCust) {
+      alert('Error: Min cannot be more than Max');
+      return;
+    }
+    newStore.getCookiesPerHour();
+    render(newStore);
+    console.log(newStore);
+  }
+);
+
+function isValidName(name) {
+  if (storename.contains(name)) {
+    alert('Error: That name already exists. Please enter a NEW store name.');
+    return;
+  } else if (name == '') {
+    alert('Please enter a store name.');
+    return;
+  }
+  return true;
+}

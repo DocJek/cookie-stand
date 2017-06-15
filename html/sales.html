@@ -7,6 +7,19 @@
 <body>
   <div id="salmonCookies">
   </div>
+  <form id="cookieInput">
+    <fieldset>
+      <legend>Add Stores Here</legend>
+      <label>Store Name</label>
+      <input name="name" type="text"/>
+      <label>Min Cust</label>
+      <input name="minCust" type="number"/>
+      <label>Max Cust</label>
+      <input name="maxCust" type="number"/>
+      <label>Average Cookie Sales</label>
+      <input name="avgCookieSales" type="number" required="required" step=".1"/>
+    </fieldset>
+    <button type="submit">Submit or DIE!</button>
   <script src="../js/app.js"></script>
 </body>
 </html>
