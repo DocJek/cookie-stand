@@ -1,0 +1,108 @@
+body {
+  background: hsla(229, 61%, 43%, 1);
+}
+
+ul {
+  text-align-last: center;
+  position: relative;
+}
+
+li.navbar {
+  font-size: 25px;
+  margin-left: 35px;
+  text-align: center;
+  display: inline;
+  color: salmon;
+  display: inline-block;
+  height: 45px;
+  width: 150px;
+  background-image: url("../images/salmon.png");
+  background-position: bottom;
+  background-size: cover;
+  background-clip: padding-box;
+}
+
+li:hover {
+  background-color: hsla(229, 61%, 21%, 0.7);
+}
+
+a {
+  text-decoration: none;
+  color: salmon;
+}
+
+img#cookies {
+  float: right;
+}
+
+#expand {
+  width: 49em;
+}
+
+#exp {
+  width: 18.56em;
+}
+
+#fish {
+  float: left;
+  width: 5em;
+}
+
+#foot {
+  text-align: justify;
+}
+
+#address {
+  padding-left: 40px;
+}
+
+h1 {
+  width: 100%;
+  top: 0px;
+  text-align: center;
+  font-size: 72px;
+  color: white;
+  background-color: hsla(204, 100%, 67%, 0.52);
+}
+
+img#head {
+  margin-left: auto;
+  margin-right: 150px;
+}
+
+img#family {
+  float: left;
+
+}
+
+#pagetop {
+  text-align: center;
+}
+
+.head {
+  font-size: 35px;
+  margin-top: 25px;
+  padding-left: 15px;
+  color: white;
+  clear: both;
+}
+
+span {
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+p {
+  padding: 25px;
+  background-color: hsla(204, 100%, 67%, 0.52);
+}
+
+div p {
+  max-width: 75%;
+}
+
+p.story {
+  max-width: 30%;
+  float: right;
+  margin: 0;
+}
