@@ -1,18 +1,14 @@
 'use strict';
 
+// Random number generator for creating.
 function randNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// Initial empty array to contain cookie store objects
 var storename = [];
-storename.contains = function (name) {
-  for (var each in storename) {
-    var store = storename[each].name;
-    if (name.toLowerCase() === store.toLowerCase()) {
-      return true;
-    }
-  }
-  return false;
-};
+
+// Cookie store object constructor
 function CookieStore (name, minCust, maxCust, avgCookieSales, cookiesPerHour) {
   this.name = name;
   this.minCust = minCust;
@@ -31,16 +27,16 @@ function CookieStore (name, minCust, maxCust, avgCookieSales, cookiesPerHour) {
   storename.push(this);
 }
 
+// Initial table build.
 var parentEl = document.getElementById('salmonCookies');
 var table = document.createElement('table');
 var tr1 = document.createElement('tr');
 var thempty = document.createElement('th');
-
 tr1.appendChild(thempty);
 table.appendChild(tr1);
 parentEl.appendChild(table);
 
-
+// First five cookie stores to be preloaded on sales page upon opening.
 var firstAndPike = new CookieStore('First and Pike', 23, 65, 6.3, []);
 firstAndPike.getCookiesPerHour();
 var seaTacAirport = new CookieStore('SeaTac Airport', 3, 24, 1.2, []);
@@ -51,8 +47,8 @@ var capitolHill = new CookieStore('Capitol Hill', 20, 38, 2.3, []);
 capitolHill.getCookiesPerHour();
 var alki = new CookieStore('Alki', 2, 16, 4.6, []);
 alki.getCookiesPerHour();
-// for hourly totals, need each index of every cookiesPerHour array added to the corresponding index of each array
 
+// Builds table header with hours of operation.
 function tableHeader () {
   for (var x = 0; x < storename[0].cookiesPerHour.length - 1; x++) {
     var th = document.createElement('th');
@@ -67,6 +63,7 @@ function tableHeader () {
   }
 }
 
+// Builds table footer with hourly totals for all stores combined.
 function tableFooter() {
   var tfoot = document.createElement('tfoot');
   tfoot.id = 'hourlyTotals';
@@ -88,7 +85,7 @@ function tableFooter() {
   }
 }
 
-
+// Renders each cookie store and sales numbers based on random numbers given in objects.
 function render(storename) {
   var tr = document.createElement('tr');
   table.appendChild(tr);
@@ -109,6 +106,7 @@ function render(storename) {
   }
 }
 
+// Set up of initial table on first load of page.
 tableHeader();
 render(firstAndPike);
 render(seaTacAirport);
@@ -117,10 +115,12 @@ render(capitolHill);
 render(alki);
 tableFooter();
 
+// Last Daily Total column build.
 var storeTotal = document.createElement('th');
 tr1.appendChild(storeTotal);
 storeTotal.textContent = 'Daily Store Totals';
 
+// When adding new stores, this handler will remove the previous hourly totals row and replace it with an updated version including the new stores sales totals.
 var cookieInput = document.getElementById('cookieInput');
 cookieInput.addEventListener('submit',
   function (event) {
@@ -145,8 +145,18 @@ cookieInput.addEventListener('submit',
   }
 );
 
+// Creates the function to check if name is in existing table and compares both names in lowercase.
+storename.contains = function (name) {
+  for (var each in storename) {
+    var store = storename[each].name;
+    if (name.toLowerCase() === store.toLowerCase()) {
+      return true;
+    }
+  }
+  return false;
+};
 
-
+// Checks if name already exists within current table as shown on screen at any given time.
 function isValidName(name) {
   if (storename.contains(name)) {
     alert('Error: That name already exists. Please enter a NEW store name.');
