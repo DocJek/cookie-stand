@@ -2,6 +2,11 @@ body {
   background: hsla(229, 61%, 43%, 1);
 }
 
+h1 {
+  color: white;
+  text-align: center;
+}
+
 table {
   border: 5px solid black;
   width: 100%;
