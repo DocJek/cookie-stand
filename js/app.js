@@ -67,18 +67,17 @@ function tableHeader () {
   }
 }
 
-
-
 function tableFooter() {
   var tfoot = document.createElement('tfoot');
   tfoot.id = 'hourlyTotals';
   table.appendChild(tfoot);
   var td1 = document.createElement('td');
   var tr = document.createElement('tr');
+  tr.setAttribute('id', 'hourFooter');
   tfoot.appendChild(tr);
   tr.appendChild(td1);
   td1.textContent = 'Hourly Totals';
-  for (var x = 0; x < 15; x++) {
+  for (var x = 0; x < 14; x++) {
     var td = document.createElement('td');
     tr.appendChild(td);
     var hourlyTotals = 0;
@@ -126,6 +125,7 @@ var cookieInput = document.getElementById('cookieInput');
 cookieInput.addEventListener('submit',
   function (event) {
     event.preventDefault();
+    var foot = document.getElementById('hourFooter');
     var name = event.target.name.value;
     if (!isValidName(name)) {
       return null;
@@ -138,8 +138,10 @@ cookieInput.addEventListener('submit',
       alert('Error: Min cannot be more than Max');
       return;
     }
+    foot.parentNode.removeChild(foot);
     newStore.getCookiesPerHour();
     render(newStore);
+    tableFooter();
   }
 );
 
